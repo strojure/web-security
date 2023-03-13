@@ -13,6 +13,14 @@
 ;;
 ;; ## CSP Header ##
 
+(defn header-name
+  "Returns CSP header name, normal one or report-only if `report-only` is true.
+  Without argument returns normal header name."
+  ([] (header-name false))
+  ([report-only]
+   (if report-only "Content-Security-Policy-Report-Only"
+                   "Content-Security-Policy")))
+
 (let [nonce-pattern (re-pattern impl/nonce-placeholder)]
 
   (defn header-value-fn

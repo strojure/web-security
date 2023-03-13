@@ -2,6 +2,21 @@
   (:require [clojure.test :as test :refer [deftest testing]]
             [strojure.web-security.csp :as csp]))
 
+(set! *warn-on-reflection* true)
+
+(deftest header-name-t
+
+  (test/is (= "Content-Security-Policy"
+              (csp/header-name)))
+
+  (test/is (= "Content-Security-Policy"
+              (csp/header-name false)))
+
+  (test/is (= "Content-Security-Policy-Report-Only"
+              (csp/header-name true)))
+
+  )
+
 (deftest header-value-fn-t
 
   (testing "String keys"
