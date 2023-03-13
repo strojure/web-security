@@ -1,4 +1,8 @@
 (ns strojure.web-security.csp
+  "Content Security Policy (CSP).
+
+  See https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP.
+  "
   (:require [clojure.string :as string])
   (:import (clojure.lang IPersistentCollection Keyword)
            (java.security SecureRandom)
@@ -112,6 +116,11 @@
 
         (static-policy)
         :=> \"default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'\"
+
+    CSP header values can be tested online:
+
+    - [CSP Evaluator](https://csp-evaluator.withgoogle.com/).
+    - [The Mozilla Observatory](https://observatory.mozilla.org/).
     "
     [policy]
     (let [[s ss & more :as sss] (-> (render-header-value policy)
