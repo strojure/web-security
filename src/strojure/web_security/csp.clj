@@ -53,8 +53,8 @@
   ([sb] (.toString ^StringBuilder sb))
   ([sb s] (.append ^StringBuilder sb ^String s)))
 
-(defn- render-policy
-  "Returns content policy header string for the `policy` map.
+(defn- render-header-value
+  "Returns content policy header value for the `policy` map.
   See [[policy-header-fn]] for the description of policy map."
   [policy]
   (-> (let [empty?! (volatile! true)]
@@ -71,9 +71,9 @@
 
 (let [nonce-pattern (re-pattern nonce-placeholder)]
 
-  (defn policy-header-fn
+  (defn header-value-fn
     "The returned function takes a `policy` map and returns a content policy
-    header string. If the policy map contains `:nonce` in directive values, the
+    header value. If the policy map contains `:nonce` in directive values, the
     returned function is a 1-arity function `(fn [nonce] policy-header)`,
     otherwise it is a 0-arity function.
 
@@ -114,7 +114,7 @@
         :=> \"default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'\"
     "
     [policy]
-    (let [[s ss & more :as sss] (-> (render-policy policy)
+    (let [[s ss & more :as sss] (-> (render-header-value policy)
                                     (string/split nonce-pattern -1))]
       (cond more, (fn multiple-nonce
                     [nonce] (transduce (interpose nonce) sb-append sss))

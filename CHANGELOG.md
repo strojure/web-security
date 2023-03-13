@@ -8,5 +8,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Release date `UNRELEASED`
 
-- (feat api): add `csp/policy-header-fn` function
+- (feat api): add `csp/header-value-fn` function
 - (feat api): add `csp/random-nonce` function
