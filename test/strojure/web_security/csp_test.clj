@@ -76,3 +76,12 @@
     )
 
   )
+
+(deftest random-nonce-t
+
+  (test/is (string? (csp/random-nonce)))
+
+  (test/is (<= 24
+               (count (csp/random-nonce))))
+
+  )

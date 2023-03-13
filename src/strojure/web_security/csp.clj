@@ -1,6 +1,8 @@
 (ns strojure.web-security.csp
   (:require [clojure.string :as string])
-  (:import (clojure.lang IPersistentCollection Keyword)))
+  (:import (clojure.lang IPersistentCollection Keyword)
+           (java.security SecureRandom)
+           (java.util Base64)))
 
 (set! *warn-on-reflection* true)
 
@@ -126,4 +128,26 @@
 ;;
 ;; ## Nonce generation ##
 
+(let [random (as-> (SecureRandom.) random
+               (doto random (.setSeed (.generateSeed random 18))))]
 
+  (defn random-nonce
+    "Returns unique random 144 bit string (24 chars) to be used as CSP nonce in
+    HTTP response. See also [Using a nonce with CSP][1].
+
+        (random-nonce) :=> \"iqkOHbaBPnGT6vC73ph89/G3\"
+        ;             Execution time mean : 1.042166 µs
+        ;    Execution time std-deviation : 30.633099 ns
+        ;   Execution time lower quantile : 1.009274 µs ( 2.5%)
+        ;   Execution time upper quantile : 1.087203 µs (97.5%)
+
+    [1]: https://content-security-policy.com/nonce/
+    "
+    []
+    (let [b (byte-array 18)]
+      (.nextBytes random b)
+      (.encodeToString (Base64/getEncoder) b))))
+
+(comment
+  (random-nonce) :=> "iqkOHbaBPnGT6vC73ph89/G3"
+  )
