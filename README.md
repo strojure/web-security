@@ -33,3 +33,9 @@ https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-s
 
 [csp/random-nonce]:
 https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.csp#random-nonce
+
+---
+
+Written by [Sergey Trofimov](https://github.com/serioga).
+
+[![GitHub](https://img.shields.io/github/license/strojure/web-security)](UNLICENSE)
