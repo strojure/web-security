@@ -31,13 +31,13 @@
 
     The keys in the policy map represent directive names, and can be strings,
     keywords (which are converted to strings using `name`), or other types which
-    provide an implementation of [[csp-impl/as-directive-name]].
+    provide an implementation of [[csp_impl/as-directive-name]].
 
     The keys in the policy map represent directive names, and can be:
 
     - string, which is taken as is
     - keyword, which are converted to string using `name`
-    - other type which provides implementation of [[csp-impl/as-directive-name]]
+    - other type which provides implementation of [[csp_impl/as-directive-name]]
 
     The values in the policy map represent directive values, and can be:
 
@@ -48,7 +48,8 @@
     - collection, where elements are rendered as directive values and
       separated with space.
     - other type which provides implementation of
-      [[csp-impl/write-directive-value]]
+      [[csp_impl/write-directive-value]]
+
 
         (def nonce-policy
           (csp/header-value-fn {\"script-src\" :nonce
@@ -65,6 +66,7 @@
 
         (static-policy)
         :=> \"default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'\"
+
 
     CSP header values can be tested online:
 
@@ -91,6 +93,7 @@
   HTTP response. Uses `java.security SecureRandom` or provided optional instance
   of `java.util.Random` to generate random bytes.
 
+
       (def random-nonce (csp/random-nonce-fn))
 
       (random-nonce) :=> \"iqkOHbaBPnGT6vC73ph89/G3\"
@@ -98,6 +101,7 @@
       ;    Execution time std-deviation : 30.633099 ns
       ;   Execution time lower quantile : 1.009274 µs ( 2.5%)
       ;   Execution time upper quantile : 1.087203 µs (97.5%)
+
 
   See also [Using a nonce with CSP](https://content-security-policy.com/nonce/).
   "
