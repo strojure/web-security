@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Release date `UNRELEASED`
 
+- (feat api BREAKING): replace `csp/random-nonce` with `random-nonce-fn`
+
 ## `0.1.0-12`
 
 Release date `2023-03-13`

@@ -6,7 +6,7 @@
   (:require [clojure.string :as string]
             [strojure.web-security.csp-impl :as impl])
   (:import (java.security SecureRandom)
-           (java.util Base64)))
+           (java.util Base64 Random)))
 
 (set! *warn-on-reflection* true)
 
@@ -86,26 +86,30 @@
 ;;
 ;; ## CSP Nonce ##
 
-(let [random (as-> (SecureRandom.) random
-               (doto random (.setSeed (.generateSeed random 18))))]
+(defn random-nonce-fn
+  "Returns unique random 144 bit string (24 chars) to be used as CSP nonce in
+  HTTP response. Uses `java.security SecureRandom` or provided optional instance
+  of `java.util.Random` to generate random bytes.
 
-  (defn random-nonce
-    "Returns unique random 144 bit string (24 chars) to be used as CSP nonce in
-    HTTP response. See also [Using a nonce with CSP][1].
+      (def random-nonce (csp/random-nonce-fn))
 
-        (random-nonce) :=> \"iqkOHbaBPnGT6vC73ph89/G3\"
-        ;             Execution time mean : 1.042166 µs
-        ;    Execution time std-deviation : 30.633099 ns
-        ;   Execution time lower quantile : 1.009274 µs ( 2.5%)
-        ;   Execution time upper quantile : 1.087203 µs (97.5%)
+      (random-nonce) :=> \"iqkOHbaBPnGT6vC73ph89/G3\"
+      ;             Execution time mean : 1.042166 µs
+      ;    Execution time std-deviation : 30.633099 ns
+      ;   Execution time lower quantile : 1.009274 µs ( 2.5%)
+      ;   Execution time upper quantile : 1.087203 µs (97.5%)
 
-    [1]: https://content-security-policy.com/nonce/
-    "
-    []
-    (let [b (byte-array 18)]
-      (.nextBytes random b)
-      (.encodeToString (Base64/getEncoder) b))))
+  See also [Using a nonce with CSP](https://content-security-policy.com/nonce/).
+  "
+  ([] (random-nonce-fn (as-> (SecureRandom.) random
+                         (doto random (.setSeed (.generateSeed random 18))))))
+  ([^Random random]
+   (fn []
+     (let [b (byte-array 18)]
+       (.nextBytes random b)
+       (.encodeToString (Base64/getEncoder) b)))))
 
 (comment
+  (def random-nonce (random-nonce-fn))
   (random-nonce) :=> "iqkOHbaBPnGT6vC73ph89/G3"
   )
