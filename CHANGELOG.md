@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## `0.2.0-13-SNAPSHOT`
+## `0.2.1-20-SNAPSHOT`
 
 Release date `UNRELEASED`
+
+## `0.2.0-19`
+
+Release date `2023-03-14`
 
 - (feat api BREAKING): replace `csp/random-nonce` with `random-nonce-fn`
 - (feat api): add `csp/requires-nonce?` function
