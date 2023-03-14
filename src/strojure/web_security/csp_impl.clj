@@ -1,4 +1,5 @@
 (ns strojure.web-security.csp-impl
+  (:require [clojure.string :as string])
   (:import (clojure.lang IPersistentCollection Keyword)))
 
 (set! *warn-on-reflection* true)
@@ -23,9 +24,7 @@
   (as-directive-name [s] s)
   (write-directive-value [s rf to] (-> to (rf " ") (rf s))))
 
-(def ^:const nonce-placeholder
-  "The replacement for the `:nonce` to be substituted with CSP nonce value."
-  "__NONCE__")
+(def ^:private ^:const nonce-placeholder "__NONCE__")
 
 (extend-type Keyword
   PolicyRender
@@ -65,5 +64,12 @@
             (write-directive-value v sb-append to))))
       (reduce-kv (sb-append) policy)
       (sb-append)))
+
+(let [nonce-pattern (re-pattern nonce-placeholder)]
+
+  (defn split-nonce
+    "Splits header value on nonce. Returns vector of all parts."
+    [s]
+    (string/split s nonce-pattern -1)))
 
 ;;--------------------------------------------------------------------------------------------------
