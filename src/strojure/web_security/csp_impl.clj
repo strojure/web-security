@@ -3,6 +3,8 @@
 
 (set! *warn-on-reflection* true)
 
+;;--------------------------------------------------------------------------------------------------
+
 (defprotocol PolicyRender
   "A protocol for rendering various types as content policy directives and their
   values."
@@ -40,6 +42,8 @@
   (write-directive-value [coll rf to]
     (reduce (fn [to x] (write-directive-value x rf to)) to coll)))
 
+;;--------------------------------------------------------------------------------------------------
+
 (defn sb-append
   "Reducing function which appends string to `StringBuilder`."
   ([] (StringBuilder.))
@@ -61,3 +65,5 @@
             (write-directive-value v sb-append to))))
       (reduce-kv (sb-append) policy)
       (sb-append)))
+
+;;--------------------------------------------------------------------------------------------------
