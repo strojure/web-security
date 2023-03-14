@@ -4,9 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## `0.2.1-20-SNAPSHOT`
+## `0.2.2-23-SNAPSHOT`
 
 Release date `UNRELEASED`
+
+## `0.2.1-22`
+
+Release date `2023-03-14`
+
+- (docs api): fix code examples and cross-ns links, 2nd attempt
 
 ## `0.2.0-19`
 
