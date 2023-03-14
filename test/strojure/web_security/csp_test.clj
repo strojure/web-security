@@ -95,6 +95,17 @@
 
   )
 
+(deftest requires-nonce?-t
+
+  (test/is (not (csp/requires-nonce? (csp/header-value-fn {}))))
+
+  (test/is (csp/requires-nonce? (csp/header-value-fn {:script-src :nonce})))
+
+  (test/is (csp/requires-nonce? (csp/header-value-fn {:script-src :nonce
+                                                      :font-src :nonce})))
+
+  )
+
 (deftest random-nonce-fn-t
 
   (test/is (string? ((csp/random-nonce-fn))))

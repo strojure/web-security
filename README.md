@@ -23,7 +23,10 @@ Functions implementing CSP:
 - [csp/header-name] returns normal or report-only name of the CSP header.
 - [csp/header-value-fn] builds function for CSP header value from policy map,
   supports dynamic nonce substitution.
-- [csp/random-nonce] generates nonce values to be used in HTTP response.
+- [csp/requires-nonce?] tests if result of the `header-value-fn` requires nonce
+  argument
+- [csp/random-nonce-fn] returns function to generate nonce values to be used in
+  HTTP response.
 
 [csp/header-name]:
 https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.csp#header-name
@@ -31,8 +34,11 @@ https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-s
 [csp/header-value-fn]:
 https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.csp#header-value-fn
 
-[csp/random-nonce]:
-https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.csp#random-nonce
+[csp/requires-nonce?]:
+https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.csp#requires-nonce?
+
+[csp/random-nonce-fn]:
+https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.csp#random-nonce-fn
 
 ---
 

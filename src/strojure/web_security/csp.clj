@@ -73,14 +73,19 @@
   [policy]
   (let [[s ss & more :as sss] (-> (impl/render-header-value policy)
                                   (impl/split-nonce))]
-    (cond more, (fn multiple-nonce
-                  [nonce] (transduce (interpose nonce) impl/sb-append sss))
-          ss,,, (fn singe-nonce
-                  [nonce] (-> ^String s
-                              (.concat nonce)
-                              (.concat ss)))
-          :else (fn static-string
-                  [] s))))
+    (cond more, ^::nonce (fn multiple-nonce
+                           [nonce] (transduce (interpose nonce) impl/sb-append sss))
+          ss,,, ^::nonce (fn singe-nonce
+                           [nonce] (-> ^String s
+                                       (.concat nonce)
+                                       (.concat ss)))
+          :else,,,,,,,,, (fn static-string
+                           [] s))))
+
+(defn requires-nonce?
+  "True if result of the [[header-value-fn]] requires nonce argument."
+  [f]
+  (some-> (meta f) ::nonce))
 
 ;;--------------------------------------------------------------------------------------------------
 ;; ## CSP Nonce ##
