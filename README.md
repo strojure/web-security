@@ -42,6 +42,6 @@ https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-s
 
 ---
 
-Written by [Sergey Trofimov](https://github.com/serioga).
+Authored by [Sergey Trofimov](https://github.com/serioga).
 
-[![GitHub](https://img.shields.io/github/license/strojure/web-security)](UNLICENSE)
+[![license](https://img.shields.io/badge/license-The%20Unlicense-informational)](UNLICENSE)
