@@ -106,6 +106,36 @@
 
   )
 
+(deftest find-directive-t
+
+  (test/is (= "/csp-report"
+              (csp/find-directive "report-uri" {"default-src" :none
+                                                "report-uri" "/csp-report"})))
+
+  (test/is (= "/csp-report"
+              (csp/find-directive "report-uri" {:default-src :none
+                                                :report-uri "/csp-report"})))
+
+  (test/is (= "/csp-report"
+              (csp/find-directive "report-uri" {:csp/default-src :none
+                                                :csp/report-uri "/csp-report"})))
+
+  (test/is (= "/csp-report"
+              (csp/find-directive :report-uri {"default-src" :none
+                                               "report-uri" "/csp-report"})))
+
+  (test/is (= "/csp-report"
+              (csp/find-directive :csp/report-uri {"default-src" :none
+                                                   "report-uri" "/csp-report"})))
+
+  (test/is (= nil
+              (csp/find-directive "report-uri" {"default-src" :none
+                                                "script-src" :nonce})))
+
+  )
+
+;;--------------------------------------------------------------------------------------------------
+
 (deftest random-nonce-fn-t
 
   (test/is (string? ((csp/random-nonce-fn))))

@@ -84,6 +84,14 @@
   [f]
   (some-> (meta f) ::nonce))
 
+(defn find-directive
+  "Returns directive value from the `policy` map for the given `policy-name`."
+  [policy-name policy]
+  (let [policy-name (impl/as-directive-name policy-name)
+        matched-value (fn matched-value [[k v]]
+                        (when (= policy-name (impl/as-directive-name k)) v))]
+    (some matched-value policy)))
+
 ;;--------------------------------------------------------------------------------------------------
 ;; ## CSP Nonce ##
 

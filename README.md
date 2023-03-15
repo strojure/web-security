@@ -25,6 +25,7 @@ Functions implementing CSP:
   supports dynamic nonce substitution.
 - [csp/requires-nonce?] tests if result of the `header-value-fn` requires nonce
   argument
+- [csp/find-directive] return policy directive value from the policy map
 - [csp/random-nonce-fn] returns function to generate nonce values to be used in
   HTTP response.
 
@@ -36,6 +37,9 @@ https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-s
 
 [csp/requires-nonce?]:
 https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.csp#requires-nonce?
+
+[csp/find-directive]:
+https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.csp#find-directive
 
 [csp/random-nonce-fn]:
 https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.csp#random-nonce-fn
