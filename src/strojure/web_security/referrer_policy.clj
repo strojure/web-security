@@ -22,6 +22,7 @@
 
     - \"strict-origin-when-cross-origin\" for boolean `true`
     - string as is for strings
+    - keyword name for keywords
 
     [Referrer-Policy]:
     https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
