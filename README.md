@@ -44,6 +44,18 @@ https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-s
 [csp/random-nonce-fn]:
 https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.csp#random-nonce-fn
 
+### HSTS
+
+Functions for the [Strict-Transport-Security] response header:
+
+- [hsts/header-value].
+
+[Strict-Transport-Security]:
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
+
+[hsts/header-value]:
+https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.hsts#header-value
+
 ---
 
 Authored by [Sergey Trofimov](https://github.com/serioga).
