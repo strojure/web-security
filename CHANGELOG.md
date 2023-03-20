@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 Release date `UNRELEASED`
 
 - (feat): implement `hsts` response header
+- (feat): implement `referrer-policy` response header
 
 ## `1.0.0-28`
 

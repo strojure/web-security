@@ -54,7 +54,19 @@ Functions for the [Strict-Transport-Security] response header:
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
 
 [hsts/header-value]:
-https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.hsts#header-value
+https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.hsts
+
+### Referrer-Policy
+
+Functions for the [Referrer-Policy] response header:
+
+- [referrer-policy/header-value].
+
+[Referrer-Policy]:
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
+
+[referrer-policy/header-value]:
+https://cljdoc.org/d/com.github.strojure/web-security/CURRENT/api/strojure.web-security.referrer-policy
 
 ---
 
