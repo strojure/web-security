@@ -1,4 +1,4 @@
-(defproject com.github.strojure/web-security "1.1.0-32"
+(defproject com.github.strojure/web-security "1.1.1-33-SNAPSHOT"
   :description "Decoupled web security implementations for Clojure."
   :url "https://github.com/strojure/web-security"
   :license {:name "The Unlicense" :url "https://unlicense.org"}
