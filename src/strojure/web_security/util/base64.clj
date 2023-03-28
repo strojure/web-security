@@ -14,3 +14,12 @@
     (.encodeToString encoder data)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn estimated-strlen
+  "Returns min length of base64 encoded string for byte array of `size` bytes,
+  without padding."
+  {:added "1.3"}
+  [size]
+  (int (-> size (/ 3) (* 4))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
