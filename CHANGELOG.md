@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 Release date `UNRELEASED`
 
 - (feat api): add `util.base64/url-encode-no-padding` function
+- (feat api): add `util.random/url-safe-string-fn` function
 
 ## `1.1.0-32`
 
