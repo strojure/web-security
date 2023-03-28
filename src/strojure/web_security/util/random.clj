@@ -23,7 +23,7 @@
 (defn url-safe-string-fn
   "Returns 0-arity function to generate random byte array of `size` bytes which
   is URL encoded without padding (16 bytes produce 22-char string). Uses
-  [[random-string-fn]] with [[util.base64/url-encode-no-padding]] as `encode-fn`.
+  [[random-string-fn]] with [[base64/url-encode-no-padding]] as `encode-fn`.
 
   Example:
 
