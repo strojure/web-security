@@ -2,6 +2,7 @@
   (:import (java.util Base64)))
 
 (set! *warn-on-reflection* true)
+(set! *unchecked-math* :warn-on-boxed)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -18,8 +19,12 @@
 (defn estimated-strlen
   "Returns min length of base64 encoded string for byte array of `size` bytes,
   without padding."
-  {:added "1.3"}
+  {:tag Integer :added "1.3"}
   [size]
-  (int (-> size (/ 3) (* 4))))
+  (int (Math/ceil (-> ^int size (/ 3.0) (* 4.0)))))
+
+(comment
+  (estimated-strlen 16) :=> 22                    ; Execution time mean : 6.270033 ns
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

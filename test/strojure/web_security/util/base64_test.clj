@@ -12,7 +12,7 @@
 
   (test/is (= 22 (base64/estimated-strlen 16)))
 
-  (test/is (= 42 (base64/estimated-strlen 32)))
+  (test/is (= 43 (base64/estimated-strlen 32)))
 
   )
 
