@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## `1.2.0-35-SNAPSHOT`
+## `1.2.1-39-SNAPSHOT`
 
 Release date `UNRELEASED`
+
+## `1.2.0-38`
+
+Release date `2023-03-28`
 
 - (feat api): add `util.base64/url-encode-no-padding` function
 - (feat api): add `util.random/url-safe-string-fn` function
