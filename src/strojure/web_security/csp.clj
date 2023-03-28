@@ -3,9 +3,8 @@
 
   See https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP.
   "
-  (:require [strojure.web-security.csp-impl :as impl])
-  (:import (java.security SecureRandom)
-           (java.util Base64 Random)))
+  (:require [strojure.web-security.csp-impl :as impl]
+            [strojure.web-security.util.random :as random]))
 
 (set! *warn-on-reflection* true)
 
@@ -96,33 +95,27 @@
 ;; ## CSP Nonce ##
 
 (defn random-nonce-fn
-  "Returns unique random 144 bit string (24 chars) to be used as CSP nonce in
-  HTTP response. Uses `java.security SecureRandom` or provided optional instance
-  of `java.util.Random` to generate random bytes.
+  "Returns unique random 128 bit URL-safe string (22 chars) to be used as CSP
+  nonce in HTTP response. Implemented with [[util.random/url-safe-string-fn]].
 
   Example:
 
       (def random-nonce (csp/random-nonce-fn))
 
-      (random-nonce) :=> \"iqkOHbaBPnGT6vC73ph89/G3\"
-      ;             Execution time mean : 1.042166 µs
-      ;    Execution time std-deviation : 30.633099 ns
-      ;   Execution time lower quantile : 1.009274 µs ( 2.5%)
-      ;   Execution time upper quantile : 1.087203 µs (97.5%)
+      (random-nonce) :=> \"AsiTZwAOG_orOX0-4Vw_7g\"
+      ;             Execution time mean : 1.074505 µs
+      ;    Execution time std-deviation : 63.286135 ns
+      ;   Execution time lower quantile : 1.000594 µs ( 2.5%)
+      ;   Execution time upper quantile : 1.162035 µs (97.5%)
 
   See also [Using a nonce with CSP](https://content-security-policy.com/nonce/).
   "
-  ([] (random-nonce-fn (as-> (SecureRandom.) random
-                         (doto random (.setSeed (.generateSeed random 18))))))
-  ([^Random random]
-   (fn []
-     (let [b (byte-array 18)]
-       (.nextBytes random b)
-       (.encodeToString (Base64/getEncoder) b)))))
+  []
+  (random/url-safe-string-fn 16))
 
 (comment
   (def random-nonce (random-nonce-fn))
-  (random-nonce) :=> "iqkOHbaBPnGT6vC73ph89/G3"
+  (random-nonce) :=> "AsiTZwAOG_orOX0-4Vw_7g"
   )
 
 ;;--------------------------------------------------------------------------------------------------

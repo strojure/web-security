@@ -10,6 +10,10 @@ Release date `UNRELEASED`
 
 - (feat api): add `util.base64/url-encode-no-padding` function
 - (feat api): add `util.random/url-safe-string-fn` function
+- (refactor): impl `csp/random-nonce-fn` using `url-safe-string-fn`
+    + BREAKING: remove 1-arity as considered useless
+    + Generated nonce is shorter (22 chars) due to changed data size from 18 to
+      16 bytes.
 
 ## `1.1.0-32`
 

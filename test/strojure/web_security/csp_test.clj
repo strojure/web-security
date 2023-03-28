@@ -1,7 +1,6 @@
 (ns strojure.web-security.csp-test
   (:require [clojure.test :as test :refer [deftest testing]]
-            [strojure.web-security.csp :as csp])
-  (:import (java.security SecureRandom)))
+            [strojure.web-security.csp :as csp]))
 
 (set! *warn-on-reflection* true)
 
@@ -140,9 +139,7 @@
 
   (test/is (string? ((csp/random-nonce-fn))))
 
-  (test/is (<= 24 (count ((csp/random-nonce-fn)))))
-
-  (test/is (string? ((csp/random-nonce-fn (SecureRandom.)))))
+  (test/is (<= 22 (count ((csp/random-nonce-fn)))))
 
   )
 
